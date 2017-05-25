@@ -1,0 +1,22 @@
+create table masks 
+ ( mask varchar2(1000),
+ result varchar2(4000)
+ )
+
+
+ CREATE OR REPLACE FUNCTION mask_function (sa varchar)return varchar
+ is
+ s varchar(1000);
+ n integer;
+ BEGIN
+ 
+for i in 0 .. n loop
+
+s := REPLACE (sa, '*', i);
+n := TO_NUMBER(s);
+if (mod(n,6) = 0) then 
+s := s || s;
+end if;
+end loop;
+return (s);
+end;
